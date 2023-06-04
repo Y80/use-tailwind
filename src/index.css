@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./assets/Fira_Code_v6.2/woff2/FiraCode-Regular.woff2') format('woff2'),
+    url('./assets/Fira_Code_v6.2/woff/FiraCode-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
