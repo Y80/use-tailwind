@@ -4,7 +4,7 @@ import avatar from '../assets/avatar.png'
 
 export default function BlogHome() {
   return (
-    <div className="h-screen bg-zinc-800 pt-32">
+    <div className="h-screen min-h-[900px] min-w-[880px] bg-zinc-800 pt-32">
       <main className="mx-auto flex w-[800px]">
         <aside className="flex w-40 shrink-0 flex-col gap-8">
           <div className="flex items-center">
