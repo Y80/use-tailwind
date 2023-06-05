@@ -1,6 +1,9 @@
-import { faker } from '@faker-js/faker'
 import { Icon } from '@iconify/react'
+import { Suspense, lazy } from 'react'
 import avatar from '../assets/avatar.png'
+
+const LazyMockTitle = lazy(() => import('./MockTitle'))
+const LazyMockDate = lazy(() => import('./MockDate'))
 
 export default function BlogHome() {
   return (
@@ -8,7 +11,7 @@ export default function BlogHome() {
       <main className="mx-auto flex w-[800px]">
         <aside className="flex w-40 shrink-0 flex-col gap-8">
           <div className="flex items-center">
-            <img src={avatar} className="w-16 rounded-full border-2 border-gray-600" />
+            <img src={avatar} className="aspect-square w-16 rounded-full border-2 border-gray-600" />
             <h1 className="grow text-center text-4xl font-bold text-white">令川</h1>
           </div>
           <div className="flex justify-between text-slate-200">
@@ -49,10 +52,17 @@ export default function BlogHome() {
                   return (
                     <div key={idx} className="mt-4 flex items-center gap-4">
                       <span className="flex-shrink-0 text-sm text-slate-400" style={{ fontFamily: 'Fira Code' }}>
-                        {faker.date.month({ abbreviated: true }) + ' '}
-                        {('0' + faker.number.int({ min: 1, max: 31 })).slice(-2)}
+                        <Suspense
+                          children={<LazyMockDate />}
+                          fallback={<div className="h-6 w-16 rounded-lg bg-gray-700" />}
+                        />
                       </span>
-                      <span className="line-clamp-1 text-lg font-bold text-slate-300">{faker.lorem.sentence()}</span>
+                      <span className="line-clamp-1 text-lg font-bold text-slate-300">
+                        <Suspense
+                          children={<LazyMockTitle />}
+                          fallback={<div className="h-6 w-96 rounded-lg bg-gray-600" />}
+                        />
+                      </span>
                     </div>
                   )
                 })}
